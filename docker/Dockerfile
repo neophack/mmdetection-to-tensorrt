@@ -9,7 +9,7 @@ RUN mkdir ~/space &&\
     mkdir /root/.pip
 
 ### set pip source
-COPY ./pip.conf /root/.pip
+# COPY ./pip.conf /root/.pip
 
 ### python
 RUN pip3 install --upgrade pip
@@ -18,7 +18,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install torch==1.6.0 torchvision==0.7.0
 
 ### install mmcv
-RUN pip3 install mmcv-full==1.1.5+torch1.6.0+cu102 -f https://openmmlab.oss-accelerate.aliyuncs.com/mmcv/dist/index.html
+RUN pip3 install https://openmmlab.oss-accelerate.aliyuncs.com/mmcv/dist/1.1.5/torch1.6.0/cu102/mmcv_full-1.1.5%2Btorch1.6.0%2Bcu102-cp36-cp36m-manylinux1_x86_64.whl
 
 ### git mmdetection
 RUN git clone --depth=1 https://github.com/open-mmlab/mmdetection.git /root/space/mmdetection
