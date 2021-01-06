@@ -9,7 +9,7 @@ RUN mkdir ~/space &&\
     mkdir /root/.pip
 
 ### set pip source
-# COPY ./pip.conf /root/.pip
+COPY ./pip.conf /root/.pip
 
 ### python
 RUN pip3 install --upgrade pip
