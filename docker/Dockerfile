@@ -3,7 +3,7 @@ FROM nvcr.io/nvidia/tensorrt:20.03-py3
 ### update apt and install libs
 RUN apt-get update &&\
     apt-get install -y vim cmake libsm6 libxext6 libxrender-dev libgl1-mesa-glx git &&\
-    && rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*
 
 ### create folder
 RUN mkdir ~/space &&\
