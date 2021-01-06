@@ -2,7 +2,8 @@ FROM nvcr.io/nvidia/tensorrt:20.03-py3
 
 ### update apt and install libs
 RUN apt-get update &&\
-    apt-get install -y vim cmake libsm6 libxext6 libxrender-dev libgl1-mesa-glx git
+    apt-get install -y vim cmake libsm6 libxext6 libxrender-dev libgl1-mesa-glx git &&\
+    && rm -rf /var/lib/apt/lists/*
 
 ### create folder
 RUN mkdir ~/space &&\
@@ -12,20 +13,20 @@ RUN mkdir ~/space &&\
 # COPY ./pip.conf /root/.pip
 
 ### python
-RUN pip3 install --upgrade pip
+RUN pip3 install --no-cache-dir --upgrade pip
 
 ### pytorch
-RUN pip3 install torch==1.6.0 torchvision==0.7.0
+RUN pip3 install --no-cache-dir torch==1.6.0 torchvision==0.7.0
 
 ### install mmcv
-RUN pip3 install https://openmmlab.oss-accelerate.aliyuncs.com/mmcv/dist/1.1.5/torch1.6.0/cu102/mmcv_full-1.1.5%2Btorch1.6.0%2Bcu102-cp36-cp36m-manylinux1_x86_64.whl
+RUN pip3 install --no-cache-dir https://openmmlab.oss-accelerate.aliyuncs.com/mmcv/dist/1.1.5/torch1.6.0/cu102/mmcv_full-1.1.5%2Btorch1.6.0%2Bcu102-cp36-cp36m-manylinux1_x86_64.whl
 
 ### git mmdetection
 RUN git clone --depth=1 https://github.com/open-mmlab/mmdetection.git /root/space/mmdetection
 
 ### install mmdetection
 RUN cd /root/space/mmdetection &&\ 
-    pip3 install -r requirements.txt &&\
+    pip3 install --no-cache-dir -r requirements.txt &&\
     python3 setup.py develop
 
 ### git amirstan plugin
